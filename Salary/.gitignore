@@ -1,0 +1,9 @@
+/build/
+
+
+# External tool builders
+.externalToolBuilders/
+
+.settings/
+.project
+.classpath

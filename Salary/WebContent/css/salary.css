@@ -1,0 +1,55 @@
+.bar {
+  fill: #419641;
+}
+
+.barCost {
+ fill: #d9534f;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis {
+  font: 16px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
+
+
+  .y.axis path, .x.axis path {
+/*   display: none; */
+}
+
+.buttonGroupTitle {
+	float: left; 
+	margin-right: 10px; 
+	margin-top: 5px; 
+} 
+
+#companyButtonGroup {
+ border: 1px black solid;
+ padding: 5px;
+ margin: 5px;
+ margin-left: 40px; 
+ margin-right: 40px;
+ //float: left;
+}
+
+
+#employeeButtonGroup {
+ border: 1px black solid;
+ padding: 5px;
+ margin: 5px;
+ margin-left: 40px; 
+ margin-right: 40px;
+ 
+// float: left;
+}

@@ -1,0 +1,50 @@
+<html>
+<head>
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-theme.css" rel="stylesheet">
+
+<link href="css/salary.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <script src="js/lib/jquery-2.1.3.min.js"></script>
+    <script src="js/lib/d3.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+
+	<div id="companyButtonGroup">
+		<div class="buttonGroupTitle">By Company</div>
+		<button id="sortByRevenue" class="btn btn-success btn-sm">Revenue</button>
+		<button id="sortByCostOfRevenue" class="btn btn-danger btn-sm">Cost of Revenue</button>
+		<button id="sortByGrossProfit" class="btn btn-success btn-sm">Gross Profit</button>
+		<button id="sortByAdmin" class="btn btn-danger btn-sm">Admin</button>
+		<button id="sortByRandD" class="btn btn-danger btn-sm">R &#38; D</button>
+		<button id="sortByOperating" class="btn btn-danger btn-sm">Operating Expenses</button>
+		<button id="sortByPreTaxIncome" class="btn btn-success btn-sm">Pre-Tax Income</button>
+		<button id="sortByTaxPaid" class="btn btn-danger btn-sm">Tax Paid</button>
+		<button id="sortByIncome" class="btn btn-success btn-sm">Income</button>
+		<button id="sort100K" class="btn btn-success btn-sm">100K</button>
+	</div>
+	<div id="employeeButtonGroup">
+		<div class="buttonGroupTitle">By Employee</div>
+		<button id="sortRevenueEmployee" class="btn btn-success btn-sm">Revenue</button>
+		<button id="sortByCostOfRevenueEmployee" class="btn btn-danger btn-sm">Cost of Revenue</button>
+		<button id="sortByGrossProfitEmployee" class="btn btn-success btn-sm">Gross Profit</button>
+		<button id="sortByAdminEmployee" class="btn btn-danger btn-sm">Admin</button>
+		<button id="sortByRandDEmployee" class="btn btn-danger btn-sm">R &#38; D</button>
+		<button id="sortOperatingEmployee" class="btn btn-danger btn-sm">Operating Expenses</button>
+		<button id="sortPreTaxIncomeEmployee" class="btn btn-success btn-sm">Pre-Tax Income</button>
+		<button id="sortByTaxPaidEmployee" class="btn btn-danger btn-sm">Tax Paid</button>
+		<button id="sortIncomeEmployee" class="btn btn-success btn-sm">Income</button>
+		<button id="sort100KEmployee" class="btn btn-success btn-sm">100K</button>
+	</div>
+	
+	<div id="mainCompanyBar"></div>
+	<div id="percentageCompanyBar"></div>
+
+
+	<script src="js/salary.js"></script>
+
+</body>
+</html>
