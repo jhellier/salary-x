@@ -1,5 +1,15 @@
 !function() {
 
+/*
+ * Salary is a set visualizations that show the ability of a company
+ * to pay a higher salary without it adversely affecting the profitability.
+ * There will be some companies that make so much profit that they can pay a higher salary
+ * while others are so marginal that paying any more will lead to even more of
+ * a loss. The highly profitable companies have a huge advantage which this visualization
+ * shows they are not taking advantage of. 
+ * 
+ * 
+ */	
 	var salary = {
 			version: "1.0"
 	};
