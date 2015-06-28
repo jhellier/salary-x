@@ -170,13 +170,33 @@
                .append("g")
                 .attr("transform",  "translate(" + margin.left + "," + margin.top + ")");
 			
+			var lineData = [100,75,50,25,0];
+            						
+								
 			
-			var lines = svgBars.append("line")
-			  .attr("x1",20)
-			  .attr("y1",120)
-			  .attr("x2",800)
-			  .attr("y2",120)
-			  .attr("stroke","black 2px solid");
+			var lines = svgBars.selectAll(".percentLines")
+				   .data(lineData)
+				.enter().append("line")
+				  .attr("x1",-20)
+				  .attr("y1", function(d,i) {
+					  return 20 + (i * 25); 
+				  })
+				  .attr("x2",870)
+				  .attr("y2", function(d,i) {
+					  return 20 + (i * 25); 
+				  })
+				  .attr("stroke","black")
+				  .attr("stroke-width", "1px")
+				  .attr("stroke-opacity", 0.2);
+			
+			percentLines(svgBars, lineData, 20, -20);
+			percentLines(svgBars, lineData, 200, -20);
+			
+			percentLabels(svgBars, lineData, 24, -40);
+			percentLabels(svgBars, lineData, 24, 885);
+			percentLabels(svgBars, lineData, 200, -40);
+			percentLabels(svgBars, lineData, 200, 885);
+			
 			
             var gBars = svgBars.selectAll("g")
                 .data(barData.sort(function(a,b) {
@@ -212,8 +232,7 @@
             	
             	var startX = j * 10; 
             	
-                gBars
-                .append("rect")
+                gBars.append("rect")
                 .attr("height", function(d) {                    
                     var column = columns[j];
                     if (d[column]/d.Revenue < 0)
@@ -248,9 +267,50 @@
                 
             }
        
-	};  				
+	};  
+	
+	
+	
+	function percentLines(parent, data, yBase, xBase) {
+
+		parent.selectAll(".percentLines")
+			   .data(data)
+			.enter().append("line")
+			  .attr("x1",xBase)
+			  .attr("y1", function(d,i) {
+				  return yBase + (i * 25); 
+			  })
+			  .attr("x2",870)
+			  .attr("y2", function(d,i) {
+				  return yBase + (i * 25); 
+			  })
+			  .attr("stroke","black")
+			  .attr("stroke-width", "1px")
+			  .attr("stroke-opacity", 0.2);
+	
+	}
+	
+	
+	function percentLabels(parent, data, yBase, xBase) {
+			parent.selectAll(".percentLabels")
+				.data(data)					
+			.enter().append("text")
+				.attr("x", xBase)
+				.attr("y", function(d,i) {
+					return yBase + (i * 25);
+				})
+				.text(function(d) {
+					return d + "%";
+				})
+				.style("font-size","11px")
+				.attr("text-anchor", "middle")
+		
+	}
 					
-        
+        /*
+         * Sorts based on the chosen column. isCost is used to change the color green for in flows like Revenue
+         * and red for out flows like Operating Costs.
+         */
 		function sortBy(sortColumn, label, isCost) {
 
 		    // Copy-on-write since tweens are evaluated after a delay.
