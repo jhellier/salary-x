@@ -171,23 +171,6 @@
                 .attr("transform",  "translate(" + margin.left + "," + margin.top + ")");
 			
 			var lineData = [100,75,50,25,0];
-            						
-								
-			
-			var lines = svgBars.selectAll(".percentLines")
-				   .data(lineData)
-				.enter().append("line")
-				  .attr("x1",-20)
-				  .attr("y1", function(d,i) {
-					  return 20 + (i * 25); 
-				  })
-				  .attr("x2",870)
-				  .attr("y2", function(d,i) {
-					  return 20 + (i * 25); 
-				  })
-				  .attr("stroke","black")
-				  .attr("stroke-width", "1px")
-				  .attr("stroke-opacity", 0.2);
 			
 			percentLines(svgBars, lineData, 20, -20);
 			percentLines(svgBars, lineData, 200, -20);
@@ -204,7 +187,7 @@
     			}))
     			.enter().append("g");
 
-            var columns = ["Revenue","Operating","PreTaxIncome","Income"];
+            var columns = ["Revenue","Cost","Operating","Admin","RandD","PreTaxIncome","Income"];
             
             var color = d3.scale.category20();
             
@@ -212,9 +195,9 @@
              .attr("text-anchor", "middle")
                 .attr("x", function(d,i) {
                     if (i > 4) {
-                        return 40 + ((i - 5) * 180);
+                        return 40 + ((i - 5) * 190);
                     } else {
-                        return 40 + (i * 180);  
+                        return 40 + (i * 190);  
                     }
                     
                 })
@@ -243,9 +226,9 @@
                 .classed("masterCircle",true)
                 .attr("x", function(d,i) {
                 	if (i > 4) {
-                		return ((i - 5) * 200) + startX;  	                	      	                		
+                		return ((i - 5) * 185) + startX;  	                	      	                		
                 	} else {
-                		return (i * 200) + startX;
+                		return (i * 185) + startX;
                 	}
                 })
                 .attr("y", function(d,i) {
