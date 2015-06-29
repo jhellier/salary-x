@@ -36,8 +36,8 @@
 #companyButtonGroup {
  padding: 5px;
  margin: 5px;
- margin-left: 40px; 
- margin-right: 40px;
+ margin-left: 10px; 
+ margin-right: 10px;
  //float: left;
 }
 
@@ -45,8 +45,8 @@
 #employeeButtonGroup {
  padding: 5px;
  margin: 5px;
- margin-left: 43px; 
- margin-right: 40px;
+ margin-left: 13px; 
+ margin-right: 10px;
  
 // float: left;
 }
@@ -79,10 +79,11 @@
 
 #buttonGroup {
  float: left;
+ min-width: 1150px;
 }
 
 #buttonGroups {
-    width: 1000px;
+    width: 900px;
     float: left;
 }
 
