@@ -14,6 +14,36 @@
 	var salary = {
 		version : "1.0"
 	};
+	
+	
+	/*
+	 * Button Bars
+	 */
+	
+	var companyButtons = [ {"id":"sortByRevenueColor","label":"Revenue"},
+	                       {"id":"sortByCostOfRevenueColor","label":"Cost of Revenue"},
+	                       {"id":"sortByGrossProfitColor","label":"Gross Profit"},
+	                       {"id":"sortByAdminColor","label":"Admin"},
+	                       {"id":"sortByRandDColor","label":"R &#38 D"},
+	                       {"id":"sortByOperatingColor","label":"Operating Expenses"},
+	                       {"id":"sortByPreTaxIncomeColor","label":"Pre-Tax Income"},
+	                       {"id":"sortByTaxPaidColor","label":"Tax Paid"},
+	                       {"id":"sortByIncomeColor","label":"Income"},
+	                       {"id":"sort100KColor","label":"100K"}
+	                       ];
+	
+	var companyButtonColor = d3.scale.category20();
+	
+	
+	for (var i = 0; i < companyButtons.length; i++) {
+		d3.select("#" + companyButtons[i].id).append("div")
+			.style("background-color", companyButtonColor(i))
+			.attr("class", "sortButton")
+		
+	}
+	
+			
+		
 
 	var margin = {
 		top : 20,
@@ -187,11 +217,13 @@
     			}))
     			.enter().append("g");
 
-            var columns = ["Revenue","Cost","Operating","Admin","RandD","PreTaxIncome","Income"];
+            var columns = ["Revenue","Cost","GrossProfit","Admin","RandD","Operating","PreTaxIncome","TaxesPaid","Income"];
             
             var color = d3.scale.category20();
             
+            //Company names are placed at the bottom of each vertical bar graph
             gBars.append("text")
+             .classed("barGraphCompanyText",true)
              .attr("text-anchor", "middle")
                 .attr("x", function(d,i) {
                     if (i > 4) {
@@ -211,6 +243,8 @@
                 .text(function(d) { return d.Company;})
              
 
+            // Walks through the columns and puts one bar per graph on each pass.
+            // I imagine there are cleaner ways of doing this but this works for now.    
             for (var j = 0; j < columns.length; j++) {
             	
             	var startX = j * 10; 
@@ -223,7 +257,7 @@
                     return 100 * (d[column]/d.Revenue);          
                 })
                 .attr("width",15)
-                .classed("masterCircle",true)
+                .classed("barGraphCompanyRect",true)
                 .attr("x", function(d,i) {
                 	if (i > 4) {
                 		return ((i - 5) * 185) + startX;  	                	      	                		
@@ -253,7 +287,10 @@
 	};  
 	
 	
-	
+	/*
+	 * Adds percent lines to the background of the bar graph. The lines
+	 * extend the complete width of the group of bar graphs.
+	 */
 	function percentLines(parent, data, yBase, xBase) {
 
 		parent.selectAll(".percentLines")
@@ -289,15 +326,23 @@
 				.attr("text-anchor", "middle")
 		
 	}
+	
+	var barColors = d3.scale.category20();
+	
+	for (var i = 0; i < 10; i++) {
+		barColors(i);
+	}
 					
         /*
          * Sorts based on the chosen column. isCost is used to change the color green for in flows like Revenue
          * and red for out flows like Operating Costs.
          */
-		function sortBy(sortColumn, label, isCost) {
+		function sortBy(sortColumn, label, isCost, colorStream) {
 
 		    // Copy-on-write since tweens are evaluated after a delay.
-		    
+			// This set of function calls has a lot going on. First you apply a sort
+			// to the target column. Then you map the y domain to the company column.
+			// Then you copy the whole thing and put it in y0.
 		    var y0 = y.domain(data.sort(function(a,b) {
 		    				return Number(b[sortColumn]) - Number(a[sortColumn]);
 		    			})
@@ -315,8 +360,11 @@
 		    svg.selectAll(".bar")
 		        .sort(function(a, b) { return y0(a.Company) - y0(b.Company); });
 
-		    var transition = svg.transition().duration(1250),
-		        delay = function(d, i) { return i * 50; };
+		    var transition = svg.transition().duration(1250);
+		    
+		    // This is passed to the delay function of a selection. Therefore it
+		    // steps through the data array, hence the use of d and i.
+		    var delay = function(d, i) { return i * 50; };
 
 		    transition.selectAll(".bar")
 		        .delay(delay)
@@ -330,14 +378,16 @@
                             return 0.7;
                         }
                     })
-           .attr("class", function() {
+                    
+           .style("fill",barColors(colorStream))         
+/*           .attr("class", function() {
                if (isCost) {
                 return "bar barCost";
                } else {
                 return "bar";
                }
           })		        	
-				.attr("width", function(d) {
+*/				.attr("width", function(d) {
 
 					var amount = Number(d[sortColumn])/1000;
 					if (amount < 0) {
@@ -376,7 +426,91 @@
 	 	    
 	 	    
 	 	   d3.select("#xAxisLabel").text(label);
-	 	    	 	   
+            
+            sortPercentageBarGraph(sortColumn);
+            
+		}
+		
+		
+		function sortPercentageBarGraph(sortColumn) {
+ 		
+			var svgBarGraph = d3.select("#percentageCompanyBar").selectAll("g g")
+				.sort(function(a,b) {
+					return Number(b[sortColumn]/b.Revenue) - Number(a[sortColumn]/a.Revenue);
+				}) 
+			
+			var delay = function(d, i) { return i * 50; };
+			
+			var transition = svgBarGraph.transition().duration(1250);
+			
+			var j = -1;
+			var k = -1;
+		    transition.selectAll(".barGraphCompanyText")
+		    	.delay(delay)
+                .attr("x", function(d) {
+                    j++;
+
+                    if (j > 4) {
+                        return 40 + ((j - 5) * 190);
+                    } else {
+                        return 40 + (j * 190);  
+                    }                    
+                    
+                })
+                .attr("y", function(d) {
+                	k++;
+                    if (k > 4) {
+                        return 320;
+                    } else {
+                        return 140;
+                    }
+
+                });
+		    
+
+		    var startX = 0;
+		    var barXPos = 0;
+		    var groupCount = transition.selectAll(".barGraphCompanyRect").length;
+		   
+		    
+		   transition.selectAll(".barGraphCompanyRect").each(function(d,i) {
+			   	
+			   	if (i == 0) {
+			   		barXPos = 0;
+			   		
+				    if (groupCount == 5 || groupCount == 10) {
+				   		startX = 0;
+				   	} else {
+				   		startX = startX + 185;
+				   	}	   		
+			   		
+			   		groupCount--;
+			   		
+			   	} else {
+			   		barXPos += 10;
+			   	}
+			   	
+			   	
+			   	
+			   	
+	            d3.select(this)
+	            .attr("x", function() {
+	            		return startX + barXPos;
+	            })
+	            .attr("y", function() {
+	            	var yPos = this.height.baseVal.value;
+	            	if (groupCount < 5) {
+	                	return 300 - yPos;  	                        
+	                } else {
+	                	return 120 - yPos;
+	                }
+	            })                	
+	            
+
+			   
+		   })
+		   
+			
 		}
 			
 		
@@ -472,19 +606,19 @@
 	 	    
  	 	    d3.select("#xAxisLabel").text(label);
 
-
+	 	   //sortPercentageBarGraph(sortColumn);
 		}
 		
-		  d3.select("#sortByRevenue").on("click", function() { return sortBy("Revenue", "Revenue (Billions)", false); });
-		  d3.select("#sortByCostOfRevenue").on("click", function() { return sortBy("Cost", "Cost of Revenue (Billions)", true); });
-          d3.select("#sortByGrossProfit").on("click", function() { return sortBy("GrossProfit", "Gross Profit (Billions)", false); });
-          d3.select("#sortByAdmin").on("click", function() { return sortBy("Admin", "Admin Cost (Billions)", true); });
-          d3.select("#sortByRandD").on("click", function() { return sortBy("RandD", "R & D Cost (Billions)", true); });
-		  d3.select("#sortByOperating").on("click", function() { return sortBy("Operating", "Operating Costs (Billions)", true); });
-          d3.select("#sortByPreTaxIncome").on("click", function() { return sortBy("PreTaxIncome", "Pre-Tax Income (Billions)", false); });
-          d3.select("#sortByTaxPaid").on("click", function() { return sortBy("TaxesPaid", "Tax Paid (Billions)", true); });
-		  d3.select("#sortByIncome").on("click", function() { return sortBy("Income", "Income (Billions)", false); });
-          d3.select("#sort100K").on("click", function() { return sortBy("Salary100K", "Cost of 100K Salary Increase (Billions)", false); });		  
+		  d3.select("#sortByRevenue").on("click", function() { return sortBy("Revenue", "Revenue (Billions)", false, 0); });
+		  d3.select("#sortByCostOfRevenue").on("click", function() { return sortBy("Cost", "Cost of Revenue (Billions)", true, 1); });
+          d3.select("#sortByGrossProfit").on("click", function() { return sortBy("GrossProfit", "Gross Profit (Billions)", false, 2); });
+          d3.select("#sortByAdmin").on("click", function() { return sortBy("Admin", "Admin Cost (Billions)", true, 3); });
+          d3.select("#sortByRandD").on("click", function() { return sortBy("RandD", "R & D Cost (Billions)", true, 4); });
+		  d3.select("#sortByOperating").on("click", function() { return sortBy("Operating", "Operating Costs (Billions)", true, 5); });
+          d3.select("#sortByPreTaxIncome").on("click", function() { return sortBy("PreTaxIncome", "Pre-Tax Income (Billions)", false, 6); });
+          d3.select("#sortByTaxPaid").on("click", function() { return sortBy("TaxesPaid", "Tax Paid (Billions)", true, 7); });
+		  d3.select("#sortByIncome").on("click", function() { return sortBy("Income", "Income (Billions)", false, 8); });
+          d3.select("#sort100K").on("click", function() { return sortBy("Salary100K", "Cost of 100K Salary Increase (Billions)", false, 9); });		  
 		  
 		  
 		  d3.select("#sortRevenueEmployee").on("click", function() { return sortByPerEmployee("RevenueEmp", "Revenue Per Employee (Thousands)", false); });

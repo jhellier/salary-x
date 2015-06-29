@@ -35,7 +35,7 @@
 } 
 
 #companyButtonGroup {
- border: 1px black solid;
+/*  border: 1px black solid; */
  padding: 5px;
  margin: 5px;
  margin-left: 40px; 
@@ -45,11 +45,32 @@
 
 
 #employeeButtonGroup {
- border: 1px black solid;
+/*  border: 1px black solid; */
  padding: 5px;
  margin: 5px;
  margin-left: 40px; 
  margin-right: 40px;
  
 // float: left;
+}
+
+.sortButton {
+	height: 10px;
+	border-radius: 3px;
+	margin-top: 5px;
+
+}
+
+.buttonDiv {
+	float: left;
+	margin: 3px;
+}
+
+.employeeButtonDiv {
+	float: left;
+	margin-right: 6px;
+}
+
+#buttonGroup {
+
 }
