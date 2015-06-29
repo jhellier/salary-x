@@ -155,6 +155,7 @@
 				.data(data)
 			.enter().append("rect")
 				.attr("class", "bar")
+				.style("fill", companyButtonColor(0))
 				.style("opacity", function(d,i) {
 					//Gives the candy cane effect on the rows
 					if (i % 2 == 0) {
@@ -195,7 +196,7 @@
 		
             var svgBars = d3.select("#percentageCompanyBar").append("svg")
                 .attr("width",  width + margin.left + margin.right + 60)
-                .attr("height", height + 200)
+                .attr("height", height + 100)
                 .style("margin-left","50px")
                .append("g")
                 .attr("transform",  "translate(" + margin.left + "," + margin.top + ")");
@@ -380,14 +381,7 @@
                     })
                     
            .style("fill",barColors(colorStream))         
-/*           .attr("class", function() {
-               if (isCost) {
-                return "bar barCost";
-               } else {
-                return "bar";
-               }
-          })		        	
-*/				.attr("width", function(d) {
+			.attr("width", function(d) {
 
 					var amount = Number(d[sortColumn])/1000;
 					if (amount < 0) {
@@ -514,7 +508,7 @@
 		}
 			
 		
-		function sortByPerEmployee(sortColumn, label, isCost) {
+		function sortByPerEmployee(sortColumn, label, isCost, colorStream) {
 
 		    // Copy-on-write since tweens are evaluated after a delay.
 		    var y0 = y.domain(data.sort(function(a,b) {
@@ -550,13 +544,7 @@
                         return 0.7;
                     }
                 })		        
-	          .attr("class", function() {
-	               if (isCost) {
-	                return "bar barCost";
-	               } else {
-	                return "bar";
-	               }
-	          })		        
+            .style("fill",barColors(colorStream))		        
 			.attr("width", function(d) {
 				var amount = Number(d[sortColumn]);
 				if (amount < 0) {
@@ -621,16 +609,16 @@
           d3.select("#sort100K").on("click", function() { return sortBy("Salary100K", "Cost of 100K Salary Increase (Billions)", false, 9); });		  
 		  
 		  
-		  d3.select("#sortRevenueEmployee").on("click", function() { return sortByPerEmployee("RevenueEmp", "Revenue Per Employee (Thousands)", false); });
-          d3.select("#sortByCostOfRevenueEmployee").on("click", function() { return sortByPerEmployee("CostEmp", "Cost of Revenue  Per Employee (Thousands)", true); });
-          d3.select("#sortByGrossProfitEmployee").on("click", function() { return sortByPerEmployee("GrossProfitEmp", "Gross Profit Per Employee (Thousands)", false); });
-          d3.select("#sortByAdminEmployee").on("click", function() { return sortByPerEmployee("AdminEmp", "Admin Cost Per Employee (Thousands)", true); });
-          d3.select("#sortByRandDEmployee").on("click", function() { return sortByPerEmployee("RandDEmp", "R & D Cost Per Employee (Thousands)", true); });
-		  d3.select("#sortOperatingEmployee").on("click", function() { return sortByPerEmployee("OperatingEmp", "Operating Costs Per Employee (Thousands)", true); });
-		  d3.select("#sortPreTaxIncomeEmployee").on("click", function() { return sortByPerEmployee("PreTaxIncomeEmp", "Pre-Tax Income Per Employee (Thousands)", false); });
-          d3.select("#sortByTaxPaidEmployee").on("click", function() { return sortByPerEmployee("TaxesPaidEmp", "Tax Paid Per Employee (Thousands)", true); });
-		  d3.select("#sortIncomeEmployee").on("click", function() { return sortByPerEmployee("IncomeEmp", "Income Per Employee (Thousands)", false); });
-		  d3.select("#sort100KEmployee").on("click", function() { return sortByPerEmployee("Salary100KEmp", "Cost of 100K Salary Increase For Each Employee (Thousands)", false); });
+		  d3.select("#sortRevenueEmployee").on("click", function() { return sortByPerEmployee("RevenueEmp", "Revenue Per Employee (Thousands)", false, 0); });
+          d3.select("#sortByCostOfRevenueEmployee").on("click", function() { return sortByPerEmployee("CostEmp", "Cost of Revenue  Per Employee (Thousands)", true, 1); });
+          d3.select("#sortByGrossProfitEmployee").on("click", function() { return sortByPerEmployee("GrossProfitEmp", "Gross Profit Per Employee (Thousands)", false, 2); });
+          d3.select("#sortByAdminEmployee").on("click", function() { return sortByPerEmployee("AdminEmp", "Admin Cost Per Employee (Thousands)", true, 3); });
+          d3.select("#sortByRandDEmployee").on("click", function() { return sortByPerEmployee("RandDEmp", "R & D Cost Per Employee (Thousands)", true, 4); });
+		  d3.select("#sortOperatingEmployee").on("click", function() { return sortByPerEmployee("OperatingEmp", "Operating Costs Per Employee (Thousands)", true, 5); });
+		  d3.select("#sortPreTaxIncomeEmployee").on("click", function() { return sortByPerEmployee("PreTaxIncomeEmp", "Pre-Tax Income Per Employee (Thousands)", false, 6); });
+          d3.select("#sortByTaxPaidEmployee").on("click", function() { return sortByPerEmployee("TaxesPaidEmp", "Tax Paid Per Employee (Thousands)", true, 7); });
+		  d3.select("#sortIncomeEmployee").on("click", function() { return sortByPerEmployee("IncomeEmp", "Income Per Employee (Thousands)", false, 8); });
+		  d3.select("#sort100KEmployee").on("click", function() { return sortByPerEmployee("Salary100KEmp", "Cost of 100K Salary Increase For Each Employee (Thousands)", false, 9); });
 		  
 		  
   		d3.csv("data/10CompanyFinancials.csv", function(error, _data) {

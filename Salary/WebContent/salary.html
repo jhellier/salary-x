@@ -12,90 +12,99 @@
     <script src="js/lib/jquery-2.1.3.min.js"></script>
     <script src="js/lib/d3.min.js"></script>
     <script src="js/lib/bootstrap.min.js"></script>
-    <div id="buttonGroup">
-	<div id="companyButtonGroup">
-		<div class="buttonGroupTitle">By Company</div>
-		<div id="sortByRevenueColor" class="buttonDiv">
-		  <button id="sortByRevenue" class="btn btn-default btn-sm">Revenue</button>
-		</div>
- 		
- 		<div id="sortByCostOfRevenueColor" class="buttonDiv"> 		
-		  <button id="sortByCostOfRevenue" class="btn btn-default btn-sm">Cost of Revenue</button>
-		</div>
-		
-		<div id="sortByGrossProfitColor" class="buttonDiv">
-		  <button id="sortByGrossProfit" class="btn btn-default btn-sm">Gross Profit</button>
-		</div>  
-		
-		
-		<div id="sortByAdminColor" class="buttonDiv">
-		  <button id="sortByAdmin" class="btn btn-default btn-sm">Admin</button>
-		</div>
-		
-		<div id="sortByRandDColor" class="buttonDiv">
-		  <button id="sortByRandD" class="btn btn-default btn-sm">R &#38; D</button>
-		</div>
-		
-		<div id="sortByOperatingColor" class="buttonDiv">
-		  <button id="sortByOperating" class="btn btn-default btn-sm">Operating Expenses</button>
-		</div>
-		
-		<div id="sortByPreTaxIncomeColor" class="buttonDiv">
-		  <button id="sortByPreTaxIncome" class="btn btn-default btn-sm">Pre-Tax Income</button>
-		</div>
-		
-		<div id="sortByTaxPaidColor" class="buttonDiv">
-		  <button id="sortByTaxPaid" class="btn btn-default btn-sm">Tax Paid</button>
-		</div>
-		
-		<div id="sortByIncomeColor" class="buttonDiv">
-		  <button id="sortByIncome" class="btn btn-default btn-sm">Income</button>
-		</div>
-		
-		<div id="sort100KColor" class="buttonDiv">
-		  <button id="sort100K" class="btn btn-default btn-sm">100K</button>
-		</div>
-		
-		
-		<div id="colorBar"></div>
-	</div>
-	<div id="employeeButtonGroup">
-		<div class="buttonGroupTitle">By Employee</div>
-		<div class="employeeButtonDiv">
-    		<button id="sortRevenueEmployee" class="btn btn-default btn-sm">Revenue</button>
-		</div>
-		<div class="employeeButtonDiv">
-		  <button id="sortByCostOfRevenueEmployee" class="btn btn-default btn-sm">Cost of Revenue</button>
-		</div>
-		<div class="employeeButtonDiv">  
-		  <button id="sortByGrossProfitEmployee" class="btn btn-default btn-sm">Gross Profit</button>
-        </div>
-        <div class="employeeButtonDiv">        		  
-		  <button id="sortByAdminEmployee" class="btn btn-default btn-sm">Admin</button>
-		 </div>
-		 <div class="employeeButtonDiv">
-		  <button id="sortByRandDEmployee" class="btn btn-default btn-sm">R &#38; D</button>
-		</div>
-		<div class="employeeButtonDiv">		 
-		  <button id="sortOperatingEmployee" class="btn btn-default btn-sm">Operating Expenses</button>
-        </div>
-        <div class="employeeButtonDiv">		  
-		  <button id="sortPreTaxIncomeEmployee" class="btn btn-default btn-sm">Pre-Tax Income</button>
-		</div>
-		<div class="employeeButtonDiv">  
-		  <button id="sortByTaxPaidEmployee" class="btn btn-default btn-sm">Tax Paid</button>
-        </div>
-        <div class="employeeButtonDiv">		  
-		  <button id="sortIncomeEmployee" class="btn btn-default btn-sm">Income</button>
-		</div>
-		<div class="employeeButtonDiv">  
-		  <button id="sort100KEmployee" class="btn btn-default btn-sm">100K</button>
-		</div>  
-	</div>
-	</div>
+    
+	<div id="buttonGroup">
 	
+		<div id="buttonGroupsTitles">
+			<div class="buttonGroupTitle">By Company</div>
+			<div class="buttonGroupTitle">Per Employee</div>
+		</div>
+
+		<div id="buttonGroups">
+			<div id="companyButtonGroup">
+
+				<div id="sortByRevenueColor" class="buttonDiv">
+					<button id="sortByRevenue" class="btn btn-default btn-sm">Revenue</button>
+				</div>
+
+				<div id="sortByCostOfRevenueColor" class="buttonDiv">
+					<button id="sortByCostOfRevenue" class="btn btn-default btn-sm">Cost of Revenue</button>
+				</div>
+
+				<div id="sortByGrossProfitColor" class="buttonDiv">
+					<button id="sortByGrossProfit" class="btn btn-default btn-sm">Gross Profit</button>
+				</div>
+
+				<div id="sortByAdminColor" class="buttonDiv">
+					<button id="sortByAdmin" class="btn btn-default btn-sm">Admin</button>
+				</div>
+
+				<div id="sortByRandDColor" class="buttonDiv">
+					<button id="sortByRandD" class="btn btn-default btn-sm">R &#38; D</button>
+				</div>
+
+				<div id="sortByOperatingColor" class="buttonDiv">
+					<button id="sortByOperating" class="btn btn-default btn-sm">Operating Expenses</button>
+				</div>
+
+				<div id="sortByPreTaxIncomeColor" class="buttonDiv">
+					<button id="sortByPreTaxIncome" class="btn btn-default btn-sm">Pre-Tax Income</button>
+				</div>
+
+				<div id="sortByTaxPaidColor" class="buttonDiv">
+					<button id="sortByTaxPaid" class="btn btn-default btn-sm">Tax Paid</button>
+				</div>
+
+				<div id="sortByIncomeColor" class="buttonDiv">
+					<button id="sortByIncome" class="btn btn-default btn-sm">Income</button>
+				</div>
+
+				<div id="sort100KColor" class="buttonDiv">
+					<button id="sort100K" class="btn btn-default btn-sm">100K</button>
+				</div>
+			</div>
+			<div id="colorBar"></div>
+
+			<div id="employeeButtonGroup">
+
+				<div class="employeeButtonDiv"  class="buttonDiv">
+					<button id="sortRevenueEmployee" class="btn btn-default btn-sm">Revenue</button>
+				</div>
+				<div class="employeeButtonDiv" class="buttonDiv">
+					<button id="sortByCostOfRevenueEmployee" class="btn btn-default btn-sm">Cost of Revenue</button>
+				</div>
+				<div class="employeeButtonDiv" class="buttonDiv">
+					<button id="sortByGrossProfitEmployee" class="btn btn-default btn-sm">Gross Profit</button>
+				</div>
+				<div class="employeeButtonDiv" class="buttonDiv">
+					<button id="sortByAdminEmployee" class="btn btn-default btn-sm">Admin</button>
+				</div>
+				<div class="employeeButtonDiv" class="buttonDiv">
+					<button id="sortByRandDEmployee" class="btn btn-default btn-sm">R &#38; D</button>
+				</div>
+				<div class="employeeButtonDiv" class="buttonDiv">
+					<button id="sortOperatingEmployee" class="btn btn-default btn-sm">Operating Expenses</button>
+				</div>
+				<div class="employeeButtonDiv" class="buttonDiv">
+					<button id="sortPreTaxIncomeEmployee" class="btn btn-default btn-sm">Pre-Tax Income</button>
+				</div>
+				<div class="employeeButtonDiv" class="buttonDiv">
+					<button id="sortByTaxPaidEmployee" class="btn btn-default btn-sm">Tax Paid</button>
+				</div>
+				<div class="employeeButtonDiv" class="buttonDiv">
+					<button id="sortIncomeEmployee" class="btn btn-default btn-sm">Income</button>
+				</div>
+				<div class="employeeButtonDiv" class="buttonDiv">
+					<button id="sort100KEmployee" class="btn btn-default btn-sm">100K</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div id="mainCompanyBar"></div>
+	<div id="percentageCompanyBarTitle">Revenue Margins</div>
 	<div id="percentageCompanyBar"></div>
+	<div id="percentageCompanyBarNotes"> Each bar is a percentage of the left most bar for each company, the revenue bar</div>
 
 
 	<script src="js/salary.js"></script>

@@ -1,9 +1,4 @@
 .bar {
-  fill: #419641;
-}
-
-.barCost {
- fill: #d9534f;
 }
 
 .bar:hover {
@@ -11,7 +6,7 @@
 }
 
 .axis {
-  font: 16px sans-serif;
+  font: 14px sans-serif;
 }
 
 .axis path,
@@ -28,14 +23,17 @@
 /*   display: none; */
 }
 
-.buttonGroupTitle {
-	float: left; 
-	margin-right: 10px; 
-	margin-top: 5px; 
+.buttonGroupTitle { 
+	margin-right: 0px; 
+	margin-top: 22px; 
+} 
+
+#buttonGroupsTitles { 
+    float: left;
+    margin-left: 30px;
 } 
 
 #companyButtonGroup {
-/*  border: 1px black solid; */
  padding: 5px;
  margin: 5px;
  margin-left: 40px; 
@@ -45,13 +43,21 @@
 
 
 #employeeButtonGroup {
-/*  border: 1px black solid; */
  padding: 5px;
  margin: 5px;
- margin-left: 40px; 
+ margin-left: 43px; 
  margin-right: 40px;
  
 // float: left;
+}
+
+#percentageCompanyBarTitle {
+	margin-left: 30px;
+}
+
+#percentageCompanyBarNotes {
+	margin-left: 30px;
+	font-size: 12px;
 }
 
 .sortButton {
@@ -72,5 +78,11 @@
 }
 
 #buttonGroup {
-
+ float: left;
 }
+
+#buttonGroups {
+    width: 1000px;
+    float: left;
+}
+
