@@ -218,7 +218,7 @@
     			}))
     			.enter().append("g");
 
-            var columns = ["Revenue","Cost","GrossProfit","Admin","RandD","Operating","PreTaxIncome","TaxesPaid","Income"];
+            var columns = ["Revenue","Cost","GrossProfit","Admin","RandD","Operating","PreTaxIncome","TaxesPaid","Income","Salary100K"];
             
             var color = d3.scale.category20();
             
@@ -510,6 +510,7 @@
 		
 		function sortByPerEmployee(sortColumn, label, isCost, colorStream) {
 
+			
 		    // Copy-on-write since tweens are evaluated after a delay.
 		    var y0 = y.domain(data.sort(function(a,b) {
 							return Number(b[sortColumn]) - Number(a[sortColumn]);
@@ -594,7 +595,7 @@
 	 	    
  	 	    d3.select("#xAxisLabel").text(label);
 
-	 	   //sortPercentageBarGraph(sortColumn);
+	 	   sortPercentageBarGraph(sortColumn.split("Emp")[0]);
 		}
 		
 		  d3.select("#sortByRevenue").on("click", function() { return sortBy("Revenue", "Revenue (Billions)", false, 0); });
