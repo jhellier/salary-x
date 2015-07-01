@@ -66,7 +66,7 @@
 
 	var svg = d3.select("#mainCompanyBar").append("svg")
 					.attr("width",	width + margin.left + margin.right + 60)
-					.attr("height",	height + margin.top + margin.bottom + 60)
+					.attr("height",	height + margin.top + margin.bottom + 25)
 				.append("g")
 					.attr("transform",	"translate(" + margin.left + "," + margin.top + ")");
 		
@@ -579,8 +579,8 @@
                 })
                 .attr("x", function(d) {
 		            var amount = Number(d[sortColumn]);
-		            if (amount < 0) {
-		                amount = 0;
+		            if (amount <= 0) {
+		                amount = 15;
 		            }
 		            return x0(amount) - 30;                	
                 })
@@ -588,6 +588,9 @@
 	 	    	 var amount = Number(d[sortColumn]);
 	 	    	  if (sortColumn == "Salary100KEmp" && amount > 0) {
 	 	    		  return ((100/d.PreTaxIncomeEmp).toPrecision(1) * 100) + "% of Pre-Tax Income";
+	 	    	  } else if (sortColumn == "Salary100KEmp") {
+	 	    		  //return "Insufficient Income";
+	 	    		  return ""; //Not sure that this looks good with the above text. Very controversial to put there too
 	 	    	  } else {
 	 	    		  return "";
 	 	    	  }

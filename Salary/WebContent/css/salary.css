@@ -1,3 +1,7 @@
+#mainDiv {
+/* 	margin: 0 auto;
+    width: 60%
+ */}
 .bar {
 }
 
@@ -53,6 +57,7 @@
 
 #percentageCompanyBarTitle {
 	margin-left: 30px;
+	margin-bottom: -20px;
 }
 
 #percentageCompanyBarNotes {
@@ -85,5 +90,19 @@
 #buttonGroups {
     width: 900px;
     float: left;
+}
+
+#explain {
+	margin-left: 220px;
+	margin-top: 30px;
+	font-style: italic;
+}
+
+
+#explain2 {
+    margin-left: 70px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-style: italic;
 }
 
