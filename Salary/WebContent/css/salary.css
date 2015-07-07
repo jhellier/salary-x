@@ -27,6 +27,15 @@
 /*   display: none; */
 }
 
+
+.grid .tick {
+    stroke: #E8E8E8;
+}
+
+.grid path {
+      stroke-width: 0;
+}
+
 .buttonGroupTitle { 
 	margin-right: 0px; 
 	margin-top: 22px; 

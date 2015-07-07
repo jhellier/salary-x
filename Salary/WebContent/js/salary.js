@@ -105,7 +105,16 @@
 			return d;
 		})
 	}
+	
+	function make_x_axis20() {        
+	    return d3.svg.axis().scale(x).orient("bottom").ticks(20);
+	}
+	
+	function make_x_axis10() {        
+	    return d3.svg.axis().scale(x).orient("bottom").ticks(10);
+	}
 
+	
 	/*
 	 * Builds the main set of horizontal bar graphs. This is the core of the viz and shows all
 	 * the different views for all the group of companies. Each view is a financial category such
@@ -143,6 +152,15 @@
 				.attr("id","xAxisLabel")
 				.style("text-anchor", "end")
 				.text("Revenue (Billions)");
+		
+		svg.append("g")		
+		        .attr("class", "grid")
+		        .attr("transform", "translate(" + margin.left + "," + height + ")")
+		        .call(make_x_axis20()
+	            .tickSize(-height, 0, 0)
+	            .tickFormat(""));
+				
+		
 		
 		// Uses .bar as the identifier. .bar does not have exist. It
 		// can be a made up name just to reserve a place for each element in the data array.
@@ -398,9 +416,15 @@
 	 	   xAxis = d3.svg.axis().scale(x).orient("bottom").ticks(20);	 	    
 	 	    
 	 	    transition.select(".x.axis")
-	        .call(xAxis)
-	      .selectAll("g")
+	        .call(xAxis);
+/*	      .selectAll("g")
 	        .delay(delay);
+*/	 	    
+	 	    
+			transition.select(".grid")
+	        .call(make_x_axis20()
+            .tickSize(-height, 0, 0)
+            .tickFormat(""));
 	 	    
             transition.selectAll(".barText")
             .delay(delay)
@@ -533,7 +557,25 @@
 		        
 		    var delay = function(d, i) { return i * 50; };
 
-		    transition.selectAll(".bar")
+	 	    transition.select(".y.axis")
+		        .call(yAxis)
+		        .selectAll("g")
+		        .delay(delay);
+ 	    
+		xAxis = d3.svg.axis().scale(x).orient("bottom").ticks(10);
+		
+		transition.select(".x.axis")
+		        .call(xAxis);
+/*		        .selectAll("g")
+		        .delay(delay);
+*/		
+		transition.select(".grid")
+	        .call(make_x_axis10()
+	        .tickSize(-height, 0, 0)
+	        .tickFormat(""));
+		
+
+ 	    transition.selectAll(".bar")
 		        .delay(delay)
 		        .attr("y", function(d) { 
 		        	return y0(d.Company); 
@@ -554,17 +596,6 @@
 				return x0(amount);
 			});		        	
 
-	 	    transition.select(".y.axis")
-		        .call(yAxis)
-		      .selectAll("g")
-		        .delay(delay);
-	 	    
-			xAxis = d3.svg.axis().scale(x).orient("bottom").ticks(10);
-			
-	 	    transition.select(".x.axis")
-		        .call(xAxis)
-		      .selectAll("g")
-		        .delay(delay);
 	 	    
             var transition2 = svg.transition().duration(1250),
             delay = function(d, i) { return i * 50; };
