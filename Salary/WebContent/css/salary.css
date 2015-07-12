@@ -2,6 +2,13 @@
 /* 	margin: 0 auto;
     width: 60%
  */}
+ 
+#title {	
+    font-size: 30px;
+    margin: 20px;  
+} 
+
+ 
 .bar {
 }
 
@@ -103,7 +110,7 @@
 
 #explain {
 	margin-left: 220px;
-	margin-top: 30px;
+	margin-top: 10px;
 	font-style: italic;
 }
 
