@@ -659,7 +659,7 @@
 		  d3.select("#sortPreTaxIncomeEmployee").on("click", function() { return sortByPerEmployee("PreTaxIncomeEmp", "Pre-Tax Income Per Employee (Thousands)", false, 6); });
           d3.select("#sortByTaxPaidEmployee").on("click", function() { return sortByPerEmployee("TaxesPaidEmp", "Tax Paid Per Employee (Thousands)", true, 7); });
 		  d3.select("#sortIncomeEmployee").on("click", function() { return sortByPerEmployee("IncomeEmp", "Income Per Employee (Thousands)", false, 8); });
-		  d3.select("#sort100KEmployee").on("click", function() { return sortByPerEmployee("Salary100KEmp", "Relative Cost of 100K Salary Increase For Each Employee (Thousands)", false, 9); });
+		  d3.select("#sort100KEmployee").on("click", function() { return sortByPerEmployee("Salary100KEmp", "Considering tax rate, the cost of 100K Salary Increase For Each Employee (Thousands)", false, 9); });
 		  
 		  
   		d3.csv("data/10CompanyFinancials.csv", function(error, _data) {
