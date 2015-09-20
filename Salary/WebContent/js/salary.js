@@ -1,5 +1,10 @@
 !function() {
 
+	
+	$(window).load(function() {
+		console.log("Fully Loaded");
+	})
+	
 /*
  * Salary is a set visualizations that show the ability of a company
  * to pay a higher salary without it adversely affecting the profitability.
@@ -632,7 +637,8 @@
 	 	   sortPercentageBarGraph(sortColumn.split("Emp")[0]);
 		}
 		
-		  d3.select("#sortByRevenue").on("click", function() { return sortBy("Revenue", "Revenue (Billions)", false, 0); });
+		  d3.select("#sortByRevenue").on("click", function() 
+				  { return sortBy("Revenue", "Revenue (Billions)", false, 0); });
 		  d3.select("#sortByCostOfRevenue").on("click", function() { return sortBy("Cost", "Cost of Revenue (Billions)", true, 1); });
           d3.select("#sortByGrossProfit").on("click", function() { return sortBy("GrossProfit", "Gross Profit (Billions)", false, 2); });
           d3.select("#sortByAdmin").on("click", function() { return sortBy("Admin", "Admin Cost (Billions)", true, 3); });
@@ -653,7 +659,7 @@
 		  d3.select("#sortPreTaxIncomeEmployee").on("click", function() { return sortByPerEmployee("PreTaxIncomeEmp", "Pre-Tax Income Per Employee (Thousands)", false, 6); });
           d3.select("#sortByTaxPaidEmployee").on("click", function() { return sortByPerEmployee("TaxesPaidEmp", "Tax Paid Per Employee (Thousands)", true, 7); });
 		  d3.select("#sortIncomeEmployee").on("click", function() { return sortByPerEmployee("IncomeEmp", "Income Per Employee (Thousands)", false, 8); });
-		  d3.select("#sort100KEmployee").on("click", function() { return sortByPerEmployee("Salary100KEmp", "Cost of 100K Salary Increase For Each Employee (Thousands)", false, 9); });
+		  d3.select("#sort100KEmployee").on("click", function() { return sortByPerEmployee("Salary100KEmp", "Relative Cost of 100K Salary Increase For Each Employee (Thousands)", false, 9); });
 		  
 		  
   		d3.csv("data/10CompanyFinancials.csv", function(error, _data) {
