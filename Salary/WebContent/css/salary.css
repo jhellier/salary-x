@@ -1,13 +1,14 @@
-#mainDiv {
-/* 	margin: 0 auto;
-    width: 60%
- */}
  
-#title {	
-    font-size: 30px;
-    margin: 20px;  
+#title {    
+    font-size: 2vmax;
+    margin-top: 30px;  
+    font-family: 'Roboto'';
+    text-align: center;
 } 
 
+body {
+    min-width: 1000px;
+}
  
 .bar {
 }
@@ -20,20 +21,50 @@
   font: 14px sans-serif;
 }
 
+
 .axis path,
 .axis line {
-  fill: none;
+  fill: none; 
   stroke: #000;
   shape-rendering: crispEdges;
 }
-
-
-
 
   .y.axis path, .x.axis path {
 /*   display: none; */
 }
 
+
+#graph {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#circleButtons {
+    float: left;
+}
+
+#year {
+    float: left;
+}
+
+.yearText:hover {
+       font-weight: bold;
+}
+
+.yearText:active {
+       font-weight: bold;
+       color: yellow;
+}
+
+
+.itemBTN:hover {
+    font-weight: bold;
+}
+
+#itemButtons {
+    float: left;
+}
 
 .grid .tick {
     stroke: #E8E8E8;
@@ -43,22 +74,19 @@
       stroke-width: 0;
 }
 
-.buttonGroupTitle { 
-	margin-right: 0px; 
-	margin-top: 22px; 
-} 
+g.grid line {
+    stroke: #E8E8E8;
+}
 
-#buttonGroupsTitles { 
-    float: left;
-    margin-left: 30px;
-} 
 
-#companyButtonGroup {
- padding: 5px;
+
+
+#companyButtonGroup  {
+  padding: 5px;
  margin: 5px;
  margin-left: 10px; 
  margin-right: 10px;
- //float: left;
+
 }
 
 
@@ -67,58 +95,77 @@
  margin: 5px;
  margin-left: 13px; 
  margin-right: 10px;
- 
-// float: left;
 }
 
 #percentageCompanyBarTitle {
-	margin-left: 30px;
-	margin-bottom: -20px;
+    margin-left: 30px;
+    margin-bottom: -20px;
 }
 
 #percentageCompanyBarNotes {
-	margin-left: 30px;
-	font-size: 12px;
+    margin-left: 30px;
+    font-size: 12px;
 }
 
 .sortButton {
-	height: 10px;
-	border-radius: 3px;
-	margin-top: 5px;
+    height: 10px;
+    border-radius: 3px;
+    margin-top: 5px;
 
 }
 
 .buttonDiv {
-	float: left;
-	margin: 3px;
+    float: left;
+    margin: 3px;
 }
 
 .employeeButtonDiv {
-	float: left;
-	margin-right: 6px;
+    float: left;
+    margin-right: 6px;
 }
 
 #buttonGroup {
- float: left;
- min-width: 1150px;
+ font-size: 1.2vmax;
+ margin-left: 15vmax;
 }
 
 #buttonGroups {
-    width: 900px;
     float: left;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-#explain {
-	margin-left: 220px;
-	margin-top: 10px;
-	font-style: italic;
+/* .buttonGroupTitle { 
+    margin-right: 0px; 
+    margin-top: 18px; 
+}  */
+
+#buttonGroupsTitles { 
+    float: left;
+    font-size: 1.3vmax;
 }
 
 
-#explain2 {
-    margin-left: 70px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    font-style: italic;
+.explainDiv {
+     margin: auto;
+    width: 70%; 
+    float: left;
+    margin-left: 15vmax;
 }
 
+.explain {
+    font-size: 2vmax;
+     text-align: center;
+ }
+
+
+#titleBar {
+    text-align: center;
+}
+
+.mainButtons {
+    margin: 20px;
+    font-size: 1.5vmax;
+    text-align: center; 
+    
+}
